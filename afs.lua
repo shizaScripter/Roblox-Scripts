@@ -88,7 +88,7 @@ Section3:NewKeybind("UI Toggle", "KeybindInfo", Enum.KeyCode.F, function()
 end)
 
 
---Function
+--Functions
 function SClicker(state)
    getgenv().Clicker = state
    if getgenv().Clicker == true then
@@ -170,15 +170,16 @@ function SKillFarm(state)
    if getgenv().FarmKills == true then
       local Websocket = WebSocket.connect("wss://demo.piesocket.com/v3/channel_1?api_key=oCdCMcMPQpbvNjUIzqtvF1d2X2okWpDQj4AwARJuAgtjhzKxVEjQU6IdCjwm&notify_self")
       Websocket.OnMessage:Connect(function(msg)
-          if string.sub(msg,1,6) == "amount" then
-             print(string.sub(msg,2))
+          if string.sub(msg,1,2) == "a " then
+            print(msg)
+            print(string.sub(msg,2,2))
           end
       end)
       while true do
           if getgenv().FarmKills == true then
               wait(0.2)
               plr.Character.HumanoidRootPart.CFrame = CFrame.new(107.960732, 61.0075188, -1602.83191, -0.416828513, -3.06281223e-08, 0.908985138, 9.90277194e-09, 1, 3.82359175e-08, -0.908985138, 2.49392933e-08, -0.416828513)
-              Websocket:Send("amount" .. tostring(killAmount))
+              Websocket:Send("a " .. tostring(killAmount))
               else
               break;   
           end
